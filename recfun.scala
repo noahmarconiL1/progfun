@@ -16,15 +16,9 @@ object Main {
     * Exercise 1
     */
   def pascal(c: Int, r: Int): Int = {
-    if (c == 0 || c == r) {
-      1
-    }
-    else if (c < 0 || c > r) {
-      0
-    }
-    else {
-      pascal(c - 1, r - 1) + pascal(c, r - 1)
-    }
+    if (c == 0 || c == r) { 1 }
+    else if (c < 0 || c > r) { 0 }
+    else { pascal(c - 1, r - 1) + pascal(c, r - 1) }
   }
 
   /**
@@ -34,23 +28,20 @@ object Main {
     @tailrec
     def run(open: Int, cs: List[Char]): Boolean = {
 
-      if (cs.isEmpty) {
-        open == 0
-      } else {
+      if (cs.isEmpty) { open == 0 }
+      else {
         val ch = cs.head
 
-        if (ch == '(') {
-          run(open + 1, cs.tail)
+        val openTally = {
+          if (ch == '(') { open + 1 }
+          else if (ch == ')') { open - 1 }
+          else { open }
         }
-        else if (ch == ')') {
-          if (open > 0) {
-            run(open - 1, cs.tail)
-          } else {
-            false
-          }
-        } else {
-          run(open, cs.tail)
-        }
+
+        // Result.
+        if (ch == ')' && open <= 0) { false }
+        else { run(openTally, cs.tail) }
+
       }
     }
 

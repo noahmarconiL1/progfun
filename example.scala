@@ -43,11 +43,11 @@ object Lists {
    */
     def max(xs: List[Int]): Int = {
       if (xs.isEmpty) { throw new java.util.NoSuchElementException("Empty List") }
-      if (xs.tail.isEmpty){
+      if (xs.tail.isEmpty) {
         xs.head
       } else {
         val tailMax = max(xs.tail)
-        if (xs.head > tailMax) { xs.head} else { tailMax }
+        if (xs.head > tailMax) { xs.head } else { tailMax }
       }
     }
   }
